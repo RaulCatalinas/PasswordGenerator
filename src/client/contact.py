@@ -42,7 +42,7 @@ class Contact(Dropdown, AppSettings):
                 dropdown.Option("Twitter"),
                 dropdown.Option("GitHub"),
             ],
-            hint_text=self.get_config_excel(7),
+            hint_text=self.get_text(7),
             visible=False,
             alignment=alignment.center,
             on_change=lambda e: self.__contact(),

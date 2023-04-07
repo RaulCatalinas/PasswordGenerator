@@ -6,7 +6,7 @@ from subprocess import run
 def compile_app():
     """Compile the app to generate the executable file"""
 
-    COMMAND = """flet pack src/client/main.py -n "Password Generator" --product-name "Password Generator" --product-version 1.0.0 --copyright "Copyright (c) 2023 Raul Catalinas Esteban" --add-data config;config --add-data src/app_logic;app_logic --add-data src/client;client"""
+    COMMAND = """flet pack src/client/main.py -n "Password Generator" --product-name "Password Generator" --product-version 1.0.0 --copyright "Copyright (c) 2023 Raul Catalinas Esteban" --add-data config;config --add-data src/app_logic;app_logic --add-data src/client;client --add-data"""
 
     execute = run(COMMAND, capture_output=True, check=True)
 
