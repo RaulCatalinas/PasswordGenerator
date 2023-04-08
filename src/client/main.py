@@ -4,7 +4,7 @@ from add_to_pythonpath import add_to_pythonpath
 
 add_to_pythonpath()
 
-from flet import app, Page, CrossAxisAlignment, MainAxisAlignment, icons
+from flet import app, Page, CrossAxisAlignment, MainAxisAlignment, icons, TextAlign
 from create_inputs import CreateInput
 from app_logic.generate_password import GeneratePassword
 from create_buttons import CreateElevatedButton
@@ -24,7 +24,7 @@ class Main(AppSettings):
         self.confirm_close = ConfirmClose(page)
 
         page.title = "Password Generator"
-        page.window_width = 830
+        page.window_width = 1200
         page.window_height = 400
 
         page.window_center()
@@ -46,7 +46,7 @@ class Main(AppSettings):
             title_dialog=icons.ERROR,
             content_dialog="",
             title_size=1.3,
-            content_size=18,
+            content_size=25,
             actions_dialog=[self.button_close_dialog],
             actions_alignment_dialog=MainAxisAlignment.END,
         )
@@ -66,15 +66,22 @@ class Main(AppSettings):
         self.generate_password = GeneratePassword()
 
         self.input_length_password = CreateInput(
-            placeholder="Password length", autofocus=True
+            placeholder=self.get_text_from_json(8),
+            autofocus=True,
+            alignment=TextAlign.CENTER,
+            text_size=20,
         )
 
         self.input_password_generated = CreateInput(
-            placeholder="Password", read_only=True, offset_y=0.5
+            placeholder=self.get_text_from_json(9),
+            read_only=True,
+            offset_y=0.5,
+            alignment=TextAlign.CENTER,
+            text_size=18,
         )
 
         self.button_generate_password = CreateElevatedButton(
-            text=self.get_config_excel(10),
+            text=self.get_text_from_json(10),
             function=lambda e: self.__generate(page),
             offset_y=1,
         )
@@ -103,14 +110,13 @@ class Main(AppSettings):
             self.__show_dialog(page=page, error=value_error)
 
     def __show_dialog(self, page, error):
-        self.__overlay(page)
-
-        page.dialog = self.error_dialog
-
-        self.error_dialog.content_text.change_text(error)
         self.button_close_dialog.on_click = lambda e: self.error_dialog.change_state(
             page
         )
+        self.error_dialog.content_text.change_text(error)
+
+        self.__overlay(page)
+        page.dialog = self.error_dialog
 
         self.error_dialog.change_state(page)
 
