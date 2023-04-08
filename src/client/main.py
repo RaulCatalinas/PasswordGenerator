@@ -1,18 +1,16 @@
 """Start the app"""
 
-from add_to_pythonpath import add_to_pythonpath
-
-add_to_pythonpath()
+from threading import Thread
 
 from flet import app, Page, CrossAxisAlignment, MainAxisAlignment, icons, TextAlign
-from create_inputs import CreateInput
+
+from app_logic.confirm_close import ConfirmClose
 from app_logic.generate_password import GeneratePassword
+from app_settings import AppSettings
 from create_buttons import CreateElevatedButton
 from create_dialog import CreateDialog
-from threading import Thread
-from app_logic.confirm_close import ConfirmClose
+from create_inputs import CreateInput
 from taskbar import TaskBar
-from app_settings import AppSettings
 
 
 class Main(AppSettings):

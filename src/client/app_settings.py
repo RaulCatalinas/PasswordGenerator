@@ -6,10 +6,11 @@ from pathlib import Path
 
 from dotenv import load_dotenv, set_key
 
+from config.get_files import get_files_path
+
 _project_path = Path(__file__).parent.parent.parent
 _config_path = _project_path.joinpath("config")
-_languages_file_path = _config_path.joinpath("languages.json")
-_environment_variables_path = _config_path.joinpath(".env")
+_languages_file_path, _environment_variables_path = get_files_path()
 
 load_dotenv(_environment_variables_path)
 
