@@ -2,7 +2,15 @@
 
 from threading import Thread
 
-from flet import app, Page, CrossAxisAlignment, MainAxisAlignment, icons, TextAlign
+from flet import (
+    app,
+    Page,
+    CrossAxisAlignment,
+    MainAxisAlignment,
+    icons,
+    TextAlign,
+    KeyboardEvent,
+)
 
 from app_logic.confirm_close import ConfirmClose
 from app_logic.generate_password import GeneratePassword
@@ -59,7 +67,12 @@ class Main(AppSettings):
 
                 self.confirm_close.change_state_close_dialog(page)
 
+        def __keyboard_event(event: KeyboardEvent):
+            if event.key == "Enter":
+                self.__generate(page)
+
         page.on_window_event = __event_close_window
+        page.on_keyboard_event = __keyboard_event
 
         self.generate_password = GeneratePassword()
 
