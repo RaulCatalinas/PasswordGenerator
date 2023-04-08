@@ -14,7 +14,7 @@ class ConfirmClose(CreateDialog, AppSettings):
         AppSettings.__init__(self)
 
         self.button_exit_the_app = CreateElevatedButton(
-            text=self.get_text(1),
+            text=self.get_text_from_json(1),
             function=lambda e: self.__exit(page),
         )
 
@@ -22,8 +22,8 @@ class ConfirmClose(CreateDialog, AppSettings):
             text="No", function=lambda e: self.__cancel(page)
         )
 
-        self.title_dialog = self.get_text(6)
-        self.content_dialog = self.get_text(0)
+        self.title_dialog = self.get_text_from_json(6)
+        self.content_dialog = self.get_text_from_json(0)
 
         CreateDialog.__init__(
             self,

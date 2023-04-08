@@ -21,13 +21,17 @@ class AppSettings:
         with open(_languages_file_path, mode="r", encoding="utf-8") as f:
             self.languages = load(f)
 
-    def get_text(self, id: int) -> str:
+    def get_text_from_json(self, id: int) -> str:
         """
-        Returns the value of the cell in the column of the excel file that corresponds to the language that the
-        user has selected
+        This function returns the text of a JSON file based on a given id and language.
 
-        :param id: The number of the column in the Excel file
-        :return: The value of the cell in the column of the language being used.
+        :param id: The id parameter is an integer that represents the unique identifier of the text in a JSON file. The function uses this id to retrieve the corresponding text in the language user specified
+
+        :type id: int
+
+        :return: The text corresponding to the given `id` parameter in the language specified by the
+        environment variable `LANGUAGE`. The text is retrieved from a dictionary called `languages` which maps
+        language codes to dictionaries containing the text for each id.
         """
 
         LANGUAGE = self.get_language()

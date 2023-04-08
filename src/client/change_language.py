@@ -38,8 +38,8 @@ class ChangeLanguage(Dropdown, AppSettings):
         return Dropdown.__init__(
             self,
             options=[
-                dropdown.Option(self.get_text(4)),
-                dropdown.Option(self.get_text(5)),
+                dropdown.Option(self.get_text_from_json(4)),
+                dropdown.Option(self.get_text_from_json(5)),
             ],
             value=self.get_language(),
             visible=False,
@@ -79,21 +79,22 @@ class ChangeLanguage(Dropdown, AppSettings):
         self.visible = False
 
         self.options = [
-            dropdown.Option(self.get_text(4)),
-            dropdown.Option(self.get_text(5)),
+            dropdown.Option(self.get_text_from_json(4)),
+            dropdown.Option(self.get_text_from_json(5)),
         ]
         self.value = self.get_language()
 
-        self.input_length_password.change_placeholder(self.get_text(8))
-        self.input_password_generated.change_placeholder(self.get_text(9))
-        self.button_generate_password.change_text_button(self.get_text(10))
+        self.input_length_password.change_placeholder(self.get_text_from_json(8))
+        self.input_password_generated.change_placeholder(self.get_text_from_json(9))
+        self.button_generate_password.change_text_button(self.get_text_from_json(10))
 
         self.close_dialog.update_text(
-            text_title=self.get_text(6), text_content=self.get_text(0)
+            text_title=self.get_text_from_json(6),
+            text_content=self.get_text_from_json(0),
         )
-        self.button_exit_the_app.change_text_button(self.get_text(1))
+        self.button_exit_the_app.change_text_button(self.get_text_from_json(1))
 
-        self.dropdown_contact.hint_text = self.get_text(7)
+        self.dropdown_contact.hint_text = self.get_text_from_json(7)
 
         self.icon_language.offset = Offset(0, 0.3)
 
