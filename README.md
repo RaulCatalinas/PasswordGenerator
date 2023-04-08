@@ -1,4 +1,4 @@
-# EasyViwer
+# PasswordGenerator
 
 ## Description
 
