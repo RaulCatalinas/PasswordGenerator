@@ -1,4 +1,4 @@
-# EasyViwer
+# PasswordGenerator
 
 ## Description
 
@@ -8,7 +8,7 @@ The number entered by the user has to be within the range 8-128 characters
 
 ## Requirements
 
-* Python 3.11 or higher
+### Python Version
 
 The app has been developed and tested on Python 3.11, although it may work with older versions.
 
@@ -18,13 +18,25 @@ If you're having trouble running your app on an older version of Python, upgrade
 
 To download the latest version of Python, visit the [official website](https://www.python.org/downloads).
 
-## Installation
+### Dependencies
 
-### Poetry
+* Python 3.11 or higer
+* flet (Graphical interface)
+* python-dotenv (Environment variable for language switching)
+
+  To install these dependencies execute in a terminal with the virtual environment activated this command: `poetry install`.
+
+  This will automatically install all the dependencies specified in your project's `pyproject.toml` file.
+
+  I explain more about "Poetry" in the next section
+
+## Poetry
+
+### Installation
 
 Poetry is a dependency management tool that simplifies the installation and management of Python packages.
 
-#### Global installation
+#### Globally
 
 To install Poetry globally, follow these steps:
 
@@ -34,7 +46,7 @@ To install Poetry globally, follow these steps:
 2. Add the Poetry installation path to your `PATH` environment variable.
 3. To verify that Poetry is installed correctly, run the following command in a terminal: `poetry --version`.
 
-#### Local installation
+#### Locally
 
 Installing Poetry locally can be useful if you want to manage different dependencies for different projects. To install Poetry locally, follow these steps:
 
