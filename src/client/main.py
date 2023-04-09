@@ -27,6 +27,8 @@ class Main(AppSettings):
     def __init__(self, page: Page):
         super().__init__()
 
+        self.set_environment_variable(page)
+
         self.confirm_close = ConfirmClose(page)
 
         page.title = "Password Generator"

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "passwordgenerator"
-version = "0.1.0"
+version = "1.0.1"
 description = ""
 authors = ["Raul Catalinas <105791463+RaulCatalinas@users.noreply.github.com>"]
 readme = "README.md"
