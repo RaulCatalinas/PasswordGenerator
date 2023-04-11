@@ -71,8 +71,6 @@ class AppSettings:
     def set_environment_variable(self, page):
         LANGUAGE = page.client_storage.get("language") or "English"
 
-        print(f"{LANGUAGE = }")
-
         environ["LANGUAGE"] = LANGUAGE
 
         set_key(

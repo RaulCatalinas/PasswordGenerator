@@ -14,9 +14,11 @@ class GeneratePassword:
             self.lowercase + self.uppercase + self.symbols + self.numbers
         )
 
-    def generate(self, password_length):
+    def generate(self, password_length, page):
         self.password = "".join(
             choice(self.total_password) for i in range(password_length)
         )
+
+        page.set_clipboard(self.password)
 
         return self.password

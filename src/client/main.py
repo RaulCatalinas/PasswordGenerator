@@ -114,7 +114,7 @@ class Main(AppSettings):
     def __generate(self, page):
         try:
             self.password_generated = self.generate_password.generate(
-                self.input_length_password.get_value()
+                password_length=self.input_length_password.get_value(), page=page
             )
             self.input_password_generated.set_value(self.password_generated)
             page.update(self.input_password_generated)
