@@ -1,9 +1,6 @@
 package main
 
-import (
-	"context"
-	"fmt"
-)
+import "context"
 
 // App struct
 type App struct {
@@ -36,9 +33,4 @@ func (a *App) beforeClose(ctx context.Context) (prevent bool) {
 // shutdown is called at application termination
 func (a *App) shutdown(ctx context.Context) {
 	// Perform your teardown here
-}
-
-// Greet returns a greeting for the given name
-func (a *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
