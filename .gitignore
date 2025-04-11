@@ -3,3 +3,5 @@ dist/
 .venv
 .idea
 /frontend/node_modules
+build
+!build/appicon.png
