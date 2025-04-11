@@ -1,7 +1,5 @@
 __pycache__/
-build/
 dist/
 .venv
 .idea
-generated-b6e7ee5e1e485382359d9676f1259e72c0655a3925c7589d01bbec4638f23ae7.ico
-Password Generator.spec
+/frontend/node_modules
