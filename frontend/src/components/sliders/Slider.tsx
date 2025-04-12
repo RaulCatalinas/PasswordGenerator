@@ -1,7 +1,12 @@
+// Hooks
 import { usePasswordLength } from "@/src/hooks/usePasswordLength"
+
+// Store
+import { getDarkModeActive } from "@/src/stores/dark-mode"
 
 export default function Slider() {
   const { setNewPasswordLength, getPasswordLength } = usePasswordLength()
+  const darkModeActive = getDarkModeActive()
 
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     setNewPasswordLength(parseInt(target.value))
@@ -17,16 +22,17 @@ export default function Slider() {
           defaultValue={8}
           onChange={handleChange}
           className={`
-            w-full h-2 bg-gray-200 rounded-lg 
+            w-full h-2 rounded-lg 
             appearance-none cursor-pointer 
-            dark:bg-gray-700
+            ${darkModeActive ? "bg-gray-700" : "bg-gray-200"}
           `}
         />
         <span
           className={`
-            slider-value bg-gray-100 text-gray-800 
-            px-3 py-1 rounded-md min-w-[3rem] text-center 
-            font-medium dark:bg-gray-800 dark:text-gray-200
+            slider-value px-3 py-1 rounded-md min-w-[3rem] 
+            text-center font-medium
+            ${darkModeActive ? "bg-gray-800" : "bg-gray-100"}
+            ${darkModeActive ? "text-gray-200" : "text-gray-800"}
           `}
         >
           {getPasswordLength()}
@@ -34,8 +40,8 @@ export default function Slider() {
       </div>
       <div
         className={`
-          flex justify-between text-xs 
-          text-gray-500 mt-1 dark:text-gray-400
+          flex justify-between text-xs mt-1
+          ${darkModeActive ? "text-gray-400" : "text-gray-500"}
         `}
       >
         <span>8</span>

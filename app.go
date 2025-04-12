@@ -1,11 +1,6 @@
 package main
 
-import (
-	"context"
-
-	"github.com/RaulCatalinas/PasswordGenerator/internal/types"
-	"github.com/wailsapp/wails/v2/pkg/runtime"
-)
+import "context"
 
 // App struct
 type App struct {
@@ -38,16 +33,4 @@ func (a *App) beforeClose(ctx context.Context) (prevent bool) {
 // shutdown is called at application termination
 func (a *App) shutdown(ctx context.Context) {
 	// Perform your teardown here
-}
-
-func (a *App) SetBackgroundColor(bgColors types.RGBAColor) {
-	runtime.WindowSetBackgroundColour(
-		a.ctx,
-		bgColors.R,
-		bgColors.G,
-		bgColors.B,
-		bgColors.A,
-	)
-
-	runtime.WindowReload(a.ctx)
 }
