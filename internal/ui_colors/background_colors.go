@@ -8,7 +8,7 @@ func NewUiColorsGenerator() *uiColorsGenerator {
 	return &uiColorsGenerator{}
 }
 
-func (uiColors *uiColorsGenerator) GetThemeBackgroundColors(lightMode bool) types.RGBAColor {
+func (uiColors *uiColorsGenerator) GetThemeBackgroundColors(darkMode bool) types.RGBAColor {
 	colors := types.ThemeColors{}
 
 	// Light mode: White with a touch of grey
@@ -23,7 +23,7 @@ func (uiColors *uiColorsGenerator) GetThemeBackgroundColors(lightMode bool) type
 	colors.DarkMode.B = 18
 	colors.DarkMode.A = 1
 
-	if lightMode {
+	if darkMode {
 		return colors.DarkMode
 	}
 
