@@ -1,17 +1,15 @@
 import { useDarkModeStore } from "@/src/stores/dark-mode"
+import { usePasswordStore } from "@/src/stores/password"
 
-interface InputPasswordProps {
-  passwordGenerated: string
-}
-
-export default function InputPassword(props: InputPasswordProps) {
+export default function InputPassword() {
   const darkModeActive = useDarkModeStore(state => state.darkModeActive)
+  const password = usePasswordStore(state => state.password)
 
   return (
     <div className="relative w-full max-w-xl">
       <input
         type="text"
-        value={props.passwordGenerated}
+        value={password}
         readOnly
         placeholder="Generated password"
         className={`

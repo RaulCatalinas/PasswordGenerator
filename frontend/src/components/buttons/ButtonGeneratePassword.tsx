@@ -1,24 +1,24 @@
-// Hooks
-import { usePassword } from "@/src/hooks/usePassword"
-import { usePasswordLength } from "@/src/hooks/usePasswordLength"
-
 // Wailsjs
 import { GeneratePassword } from "@/wailsjs/password/PasswordGenerator"
 
 // Store
 import { useDarkModeStore } from "@/src/stores/dark-mode"
+import { usePasswordStore } from "@/src/stores/password"
+
+// Utils
+import { copyPasswordToClipboard } from "@/src/utils/password"
 
 export default function ButtonGeneratePassword() {
-  const { getPasswordLength } = usePasswordLength()
-  const { setNewPassword } = usePassword()
+  const passwordLength = usePasswordStore(state => state.passwordLength)
+  const setPassword = usePasswordStore(state => state.setPassword)
   const darkModeActive = useDarkModeStore(state => state.darkModeActive)
 
   const generatePassword = async () => {
-    const passwordLength = getPasswordLength()
-    console.log(passwordLength)
     const passwordGenerated = await GeneratePassword(passwordLength)
 
-    setNewPassword(passwordGenerated)
+    setPassword(passwordGenerated)
+
+    copyPasswordToClipboard(passwordGenerated)
   }
 
   return (

@@ -1,6 +1,10 @@
 package main
 
-import "context"
+import (
+	"context"
+
+	"github.com/wailsapp/wails/v2/pkg/runtime"
+)
 
 // App struct
 type App struct {
@@ -33,4 +37,9 @@ func (a *App) beforeClose(ctx context.Context) (prevent bool) {
 // shutdown is called at application termination
 func (a *App) shutdown(ctx context.Context) {
 	// Perform your teardown here
+}
+
+// Copies text to the user's clipboard
+func (a *App) SetClipboard(text string) {
+	runtime.ClipboardSetText(a.ctx, text)
 }

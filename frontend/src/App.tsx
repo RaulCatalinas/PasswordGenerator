@@ -1,16 +1,13 @@
 // Components
+import ButtonCopyPassWord from "./components/buttons/ButtonCopyPassword"
 import ButtonGeneratePassword from "./components/buttons/ButtonGeneratePassword"
 import InputPassword from "./components/inputs/InputPassword"
 import Slider from "./components/sliders/Slider"
-
-// Hooks
-import { usePassword } from "./hooks/usePassword"
 
 // Store
 import { useDarkModeStore } from "./stores/dark-mode"
 
 export default function App() {
-  const { getPassword } = usePassword()
   const darkModeActive = useDarkModeStore(state => state.darkModeActive)
 
   return (
@@ -49,10 +46,11 @@ export default function App() {
             <Slider />
           </div>
 
-          <InputPassword passwordGenerated={getPassword()} />
+          <InputPassword />
 
-          <div className="flex justify-center mt-6">
+          <div className="flex flex-row justify-center items-center gap-2 mt-6">
             <ButtonGeneratePassword />
+            <ButtonCopyPassWord />
           </div>
         </div>
       </div>

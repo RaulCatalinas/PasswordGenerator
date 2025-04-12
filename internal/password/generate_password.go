@@ -1,6 +1,12 @@
 package password
 
-import "fmt"
+import (
+	"math/rand"
+	"strings"
+	"time"
+
+	"github.com/RaulCatalinas/PasswordGenerator/internal/constants"
+)
 
 type passwordGenerator struct{}
 
@@ -8,10 +14,20 @@ func NewPasswordGenerator() *passwordGenerator {
 	return &passwordGenerator{}
 }
 
-func (pg *passwordGenerator) GeneratePassword(length uint8) string {
-	message := fmt.Sprintf("Password generated with a length of %d characters", length)
+func (pg *passwordGenerator) GeneratePassword(passwordLength int) string {
+	totalChars := constants.LOWERCASE + constants.UPPERCASE + constants.SYMBOLS + constants.NUMBERS
 
-	println(message)
+	// Initialize random seed
+	rand.New(rand.NewSource(time.Now().UnixNano()))
 
-	return "password123"
+	var password strings.Builder
+
+	password.Grow(passwordLength)
+
+	for i := 0; i < passwordLength; i++ {
+		randomIndex := rand.Intn(len(totalChars))
+		password.WriteByte(totalChars[randomIndex])
+	}
+
+	return password.String()
 }

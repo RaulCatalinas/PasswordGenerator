@@ -1,15 +1,27 @@
-// Hooks
-import { usePasswordLength } from "@/src/hooks/usePasswordLength"
-
 // Store
 import { useDarkModeStore } from "@/src/stores/dark-mode"
+import { usePasswordStore } from "@/src/stores/password"
+
+// Third-Party libraries
+import { useDebounce } from "use-debounce"
+
+// React
+import { useEffect, useState } from "react"
 
 export default function Slider() {
-  const { setNewPasswordLength, getPasswordLength } = usePasswordLength()
   const darkModeActive = useDarkModeStore(state => state.darkModeActive)
+  const setPasswordLength = usePasswordStore(state => state.setPasswordLength)
+
+  const [localPasswordLength, setLocalPasswordLength] = useState(8)
+
+  const [debouncedLength] = useDebounce(localPasswordLength, 500)
+
+  useEffect(() => {
+    setPasswordLength(debouncedLength)
+  }, [debouncedLength, setPasswordLength])
 
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    setNewPasswordLength(parseInt(target.value))
+    setLocalPasswordLength(parseInt(target.value))
   }
 
   return (
@@ -35,7 +47,7 @@ export default function Slider() {
             ${darkModeActive ? "text-gray-200" : "text-gray-800"}
           `}
         >
-          {getPasswordLength()}
+          {localPasswordLength}
         </span>
       </div>
       <div
