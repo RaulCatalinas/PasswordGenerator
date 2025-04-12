@@ -6,12 +6,12 @@ import { usePasswordLength } from "@/src/hooks/usePasswordLength"
 import { GeneratePassword } from "@/wailsjs/password/PasswordGenerator"
 
 // Store
-import { getDarkModeActive } from "@/src/stores/dark-mode"
+import { useDarkModeStore } from "@/src/stores/dark-mode"
 
 export default function ButtonGeneratePassword() {
   const { getPasswordLength } = usePasswordLength()
   const { setNewPassword } = usePassword()
-  const darkModeActive = getDarkModeActive()
+  const darkModeActive = useDarkModeStore(state => state.darkModeActive)
 
   const generatePassword = async () => {
     const passwordLength = getPasswordLength()

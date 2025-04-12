@@ -2,11 +2,11 @@
 import { usePasswordLength } from "@/src/hooks/usePasswordLength"
 
 // Store
-import { getDarkModeActive } from "@/src/stores/dark-mode"
+import { useDarkModeStore } from "@/src/stores/dark-mode"
 
 export default function Slider() {
   const { setNewPasswordLength, getPasswordLength } = usePasswordLength()
-  const darkModeActive = getDarkModeActive()
+  const darkModeActive = useDarkModeStore(state => state.darkModeActive)
 
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     setNewPasswordLength(parseInt(target.value))

@@ -7,12 +7,11 @@ import Slider from "./components/sliders/Slider"
 import { usePassword } from "./hooks/usePassword"
 
 // Store
-import { getDarkModeActive } from "./stores/dark-mode"
+import { useDarkModeStore } from "./stores/dark-mode"
 
 export default function App() {
   const { getPassword } = usePassword()
-
-  const darkModeActive = getDarkModeActive()
+  const darkModeActive = useDarkModeStore(state => state.darkModeActive)
 
   return (
     <div

@@ -1,11 +1,11 @@
-import { getDarkModeActive } from "@/src/stores/dark-mode"
+import { useDarkModeStore } from "@/src/stores/dark-mode"
 
 interface InputPasswordProps {
   passwordGenerated: string
 }
 
 export default function InputPassword(props: InputPasswordProps) {
-  const darkModeActive = getDarkModeActive()
+  const darkModeActive = useDarkModeStore(state => state.darkModeActive)
 
   return (
     <div className="relative w-full max-w-xl">
