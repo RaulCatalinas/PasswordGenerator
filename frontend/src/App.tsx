@@ -1,15 +1,56 @@
-import wailsLogo from "./assets/wails.png"
+// Components
+import ButtonGeneratePassword from "./components/buttons/ButtonGeneratePassword"
+import InputPassword from "./components/inputs/InputPassword"
+import Slider from "./components/sliders/Slider"
+
+// Hooks
+import { usePassword } from "./hooks/usePassword"
 
 export default function App() {
+  const { getPassword } = usePassword()
+
   return (
-    <div className="min-h-screen bg-white grid grid-cols-1 place-items-center justify-items-center mx-auto py-8">
-      <div className="text-blue-900 text-2xl font-bold font-mono">
-        <h1 className="content-center">Vite + React + TS + Tailwind</h1>
-      </div>
-      <div className="w-fit max-w-md">
-        <a href="https://wails.io" target="_blank">
-          <img src={wailsLogo} className="logo wails" alt="Wails logo" />
-        </a>
+    <div
+      className={`
+        flex flex-col items-center justify-center h-screen 
+      bg-gray-50 p-6 dark:bg-gray-900
+      `}
+    >
+      <div
+        className={`
+          w-full max-w-3xl bg-white text-gray-800 
+          rounded-xl shadow-lg p-8 space-y-8
+          dark:bg-gray-800 dark:text-white
+        `}
+      >
+        <h1
+          className={`
+            text-2xl font-bold text-center 
+          text-gray-800 dark:text-white
+          `}
+        >
+          Password Generator
+        </h1>
+
+        <div className="space-y-6">
+          <InputPassword passwordGenerated={getPassword()} />
+
+          <div className="space-y-2">
+            <label
+              className={`
+                block text-sm font-medium 
+              text-gray-700 dark:text-gray-300
+              `}
+            >
+              Password Length:
+            </label>
+            <Slider />
+          </div>
+
+          <div className="flex justify-center mt-6">
+            <ButtonGeneratePassword />
+          </div>
+        </div>
       </div>
     </div>
   )
