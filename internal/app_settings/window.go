@@ -2,7 +2,7 @@ package app_settings
 
 const (
 	TITLE          = "PasswordGenerator"
-	WIDTH          = 1200
-	HEIGHT         = 400
+	WIDTH          = 850
+	HEIGHT         = 600
 	DISABLE_RESIZE = true
 )
