@@ -3,6 +3,7 @@ import ButtonCopyPassWord from "./components/buttons/ButtonCopyPassword"
 import ButtonGeneratePassword from "./components/buttons/ButtonGeneratePassword"
 import InputPassword from "./components/inputs/InputPassword"
 import Slider from "./components/sliders/Slider"
+import TaskBar from "./components/taskbar/Taskbar"
 
 // Store
 import { useDarkModeStore } from "./stores/dark-mode"
@@ -21,6 +22,14 @@ export default function App() {
           ${darkModeActive ? "bg-gray-900" : "bg-gray-200 "}
         `}
       >
+        <h1
+          className={`
+              text-2xl font-bold text-center z-10
+              ${darkModeActive ? "text-white" : "text-gray-800"}
+            `}
+        >
+          Password Generator
+        </h1>
         <div
           className={`
             w-full max-w-3xl text-gray-800 
@@ -28,14 +37,7 @@ export default function App() {
             ${darkModeActive ? "bg-gray-800" : "bg-white"}
           `}
         >
-          <h1
-            className={`
-              text-2xl font-bold text-center
-              ${darkModeActive ? "text-white" : "text-gray-800"}
-            `}
-          >
-            Password Generator
-          </h1>
+          <TaskBar />
 
           <div className="space-y-6">
             <div className="space-y-2">
