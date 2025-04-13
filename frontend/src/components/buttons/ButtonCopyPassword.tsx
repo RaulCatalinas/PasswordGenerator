@@ -10,7 +10,7 @@ export default function ButtonCopyPassWord() {
   const darkModeActive = useDarkModeStore(state => state.darkModeActive)
 
   const handleClick = () => {
-    copyPasswordToClipboard(password)
+    copyPasswordToClipboard({ password, darkModeActive })
   }
 
   return (
