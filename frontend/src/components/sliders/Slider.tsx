@@ -43,7 +43,7 @@ export default function Slider() {
           className={`
             slider-value px-3 py-1 rounded-md min-w-[3rem] 
             text-center font-medium
-            ${darkModeActive ? "bg-gray-800" : "bg-gray-100"}
+            ${darkModeActive ? "bg-gray-700" : "bg-gray-100"}
             ${darkModeActive ? "text-gray-200" : "text-gray-800"}
           `}
         >
