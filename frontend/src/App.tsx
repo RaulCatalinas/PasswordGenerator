@@ -22,14 +22,6 @@ export default function App() {
           ${darkModeActive ? "bg-gray-900" : "bg-gray-200 "}
         `}
       >
-        <h1
-          className={`
-              text-2xl font-bold text-center z-10
-              ${darkModeActive ? "text-white" : "text-gray-800"}
-            `}
-        >
-          Password Generator
-        </h1>
         <div
           className={`
             w-full max-w-3xl text-gray-800 

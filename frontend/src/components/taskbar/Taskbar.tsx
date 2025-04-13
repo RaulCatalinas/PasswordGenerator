@@ -12,8 +12,7 @@ export default function TaskBar() {
   return (
     <header
       className={`
-        fixed top-0 left-0 right-0 flex justify-end items-center 
-        px-6 py-3 gap-1.5
+        fixed top-0 left-0 right-0 px-6 py-3 flex items-center justify-end gap-1.5
         ${darkModeActive ? "bg-gray-700/90" : "bg-white/90"}
         ${darkModeActive ? "text-white" : "text-gray-800"}
       `}
