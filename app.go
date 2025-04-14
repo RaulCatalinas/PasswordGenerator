@@ -4,6 +4,8 @@ import (
 	"context"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
+
+	userPreferences "github.com/RaulCatalinas/PasswordGenerator/internal/user_preferences"
 )
 
 // App struct
@@ -18,8 +20,8 @@ func NewApp() *App {
 
 // startup is called at application startup
 func (a *App) startup(ctx context.Context) {
-	// Perform your setup here
 	a.ctx = ctx
+	userPreferences.InitPreferences()
 }
 
 // domReady is called after front-end resources have been loaded
@@ -36,7 +38,7 @@ func (a *App) beforeClose(ctx context.Context) (prevent bool) {
 
 // shutdown is called at application termination
 func (a *App) shutdown(ctx context.Context) {
-	// Perform your teardown here
+	userPreferences.SavePreferences()
 }
 
 // Copies text to the user's clipboard

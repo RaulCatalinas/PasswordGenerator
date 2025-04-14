@@ -7,12 +7,21 @@ import { IconMoonFilled, IconSunFilled } from "@tabler/icons-react"
 // Components
 import BaseTaskBarButton from "./BaseTaskBarButton"
 
+// Wailsjs
+import { types } from "@/wailsjs/models"
+import { SetPreference } from "@/wailsjs/user_preferences/userPreferencesGenerator"
+
 export default function ButtonChangeTheme() {
   const darkModeActive = useDarkModeStore(state => state.darkModeActive)
   const setDarkModeActive = useDarkModeStore(state => state.setDarkModeActive)
 
-  const toggleDarkModeActive = () => {
+  const toggleDarkModeActive = async () => {
     setDarkModeActive(!darkModeActive)
+
+    await SetPreference(
+      types.UserPreferencesKeys.DARK_MODE_ACTIVE,
+      !darkModeActive
+    )
   }
 
   return (
