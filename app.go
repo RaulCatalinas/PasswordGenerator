@@ -45,3 +45,7 @@ func (a *App) shutdown(ctx context.Context) {
 func (a *App) SetClipboard(text string) {
 	runtime.ClipboardSetText(a.ctx, text)
 }
+
+func (a *App) OpenUrl(url string) {
+	runtime.BrowserOpenURL(a.ctx, url)
+}
