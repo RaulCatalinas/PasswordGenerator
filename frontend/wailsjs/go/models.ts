@@ -1,12 +1,12 @@
 export namespace types {
 	
-	export enum Language {
-	    ENGLISH = "english",
-	    SPANISH = "spanish",
-	}
 	export enum UserPreferencesKeys {
 	    DARK_MODE_ACTIVE = "darkModeActive",
 	    LANGUAGE = "language",
+	}
+	export enum Language {
+	    ENGLISH = "english",
+	    SPANISH = "spanish",
 	}
 	export class UserPreferences {
 	    darkModeActive: boolean;
