@@ -12,9 +12,15 @@ export const useSelectStore = create<SelectState>()(set => ({
   showChangeLanguageSelect: false,
 
   setShowContactSelect(showContactSelect) {
-    set({ showContactSelect })
+    set({
+      showContactSelect,
+      showChangeLanguageSelect: false
+    })
   },
   setShowChangeLanguageSelect(showChangeLanguageSelect) {
-    set({ showChangeLanguageSelect })
+    set({
+      showChangeLanguageSelect,
+      showContactSelect: false
+    })
   },
 }))
