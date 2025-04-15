@@ -2,6 +2,7 @@
 import ButtonChangeLanguage from "@/src/components/buttons/ButtonChangeLanguage"
 import ButtonChangeTheme from "@/src/components/buttons/ButtonChangeTheme"
 import ButtonContact from "@/src/components/buttons/ButtonContact"
+import SelectLanguage from "@/src/components/selects/SelectLangauge"
 import SelectSocialMedia from "@/src/components/selects/SelectSocialMedia"
 
 // Stores
@@ -11,6 +12,9 @@ import { useSelectStore } from "@/src/stores/select"
 export default function TaskBar() {
   const darkModeActive = useDarkModeStore(state => state.darkModeActive)
   const showContactSelect = useSelectStore(state => state.showContactSelect)
+  const showChangeLanguageSelect = useSelectStore(
+    state => state.showChangeLanguageSelect
+  )
 
   return (
     <header
@@ -20,7 +24,14 @@ export default function TaskBar() {
         ${darkModeActive ? "text-white" : "text-gray-800"}
       `}
     >
-      <ButtonChangeLanguage />
+      <div className="relative">
+        <ButtonChangeLanguage />
+        {showChangeLanguageSelect && (
+          <div className="absolute right-0 mt-1 w-48 z-10">
+            <SelectLanguage />
+          </div>
+        )}
+      </div>
       <div className="relative">
         <ButtonContact />
         {showContactSelect && (
