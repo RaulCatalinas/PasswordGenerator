@@ -70,6 +70,7 @@ func main() {
 		},
 		EnumBind: []interface{}{
 			types.AllUserPreferences,
+			types.AllLanguages,
 		},
 	})
 

@@ -68,11 +68,12 @@ func (userPrefs *userPreferencesGenerator) SetPreference(
 			return fmt.Errorf("value for darkMode must be boolean")
 		}
 	case types.LanguagePreference:
-		if strValue, ok := value.(string); ok {
-			if strValue != "en" && strValue != "es" {
-				strValue = "en"
+		if value, ok := value.(types.Language); ok {
+			if value != types.English && value != types.Spanish {
+				value = types.English
 			}
-			currentPreferences.Language = strValue
+
+			currentPreferences.Language = value
 		} else {
 			return fmt.Errorf("value for language must be string")
 		}
