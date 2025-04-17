@@ -9,8 +9,8 @@ const (
 )
 
 const (
-	English Language = "english"
-	Spanish Language = "spanish"
+	English Language = "en"
+	Spanish Language = "es"
 )
 
 var AllUserPreferences = []struct {

@@ -5,8 +5,8 @@ export namespace types {
 	    LANGUAGE = "language",
 	}
 	export enum Language {
-	    ENGLISH = "english",
-	    SPANISH = "spanish",
+	    ENGLISH = "en",
+	    SPANISH = "es",
 	}
 	export class UserPreferences {
 	    darkModeActive: boolean;
