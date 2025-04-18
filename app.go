@@ -33,7 +33,14 @@ func (a App) domReady(ctx context.Context) {
 // either by clicking the window close button or calling runtime.Quit.
 // Returning true will cause the application to continue, false will continue shutdown as normal.
 func (a *App) beforeClose(ctx context.Context) (prevent bool) {
-	return false
+	selection, _ := runtime.MessageDialog(a.ctx, runtime.MessageDialogOptions{
+		Type:    runtime.QuestionDialog,
+		Title:   "Close Application",
+		Message: "Are you sure you wanna close the application?",
+		Icon:    icon,
+	})
+
+	return selection == "No"
 }
 
 // shutdown is called at application termination
