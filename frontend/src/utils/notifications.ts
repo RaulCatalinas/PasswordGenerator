@@ -21,9 +21,7 @@ export function notify({ text, type, darkModeActive }: NotifyProps) {
       backgroundColor: `
         rgb(${R}, ${G}, ${B})
       `,
-      color: darkModeActive
-        ? "white"
-        : "rgb(15, 23, 42)"
+      color: darkModeActive ? "white" : "rgb(15, 23, 42)"
     }
   })
 }

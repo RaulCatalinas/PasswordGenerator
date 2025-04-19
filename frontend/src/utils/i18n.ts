@@ -1,14 +1,14 @@
 // Types
-import type { I18NLanguage } from "@/src/types/i18n";
+import type { I18NLanguage } from "@/src/types/i18n"
 
 // Wailsjs
-import { types } from "@/wailsjs/models";
+import { types } from "@/wailsjs/models"
 
 //Third-Party libraries
-import i18next from 'i18next';
+import i18next from "i18next"
 
 // Enums
-import { TranslationKeys } from "@/src/enums/i18n";
+import { TranslationKeys } from "@/src/enums/i18n"
 
 export function getI18NLanguages(): I18NLanguage[] {
   return [
