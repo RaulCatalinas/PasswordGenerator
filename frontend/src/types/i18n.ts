@@ -1,5 +1,5 @@
 export interface I18NLanguage {
-  id: string,
+  id: string
   name: string
   value: string
 }

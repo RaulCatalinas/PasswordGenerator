@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from "zustand"
 
 interface PasswordState {
   password: string
@@ -15,5 +15,5 @@ export const usePasswordStore = create<PasswordState>()(set => ({
   },
   setPasswordLength(passwordLength) {
     set({ passwordLength })
-  },
+  }
 }))

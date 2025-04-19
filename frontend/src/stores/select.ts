@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from "zustand"
 
 interface SelectState {
   showContactSelect: boolean
@@ -22,5 +22,5 @@ export const useSelectStore = create<SelectState>()(set => ({
       showChangeLanguageSelect,
       showContactSelect: false
     })
-  },
+  }
 }))

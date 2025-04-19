@@ -5,7 +5,7 @@ import { SetClipboard } from "@/wailsjs/main/App"
 import { notify } from "./notifications"
 
 //Third-Party libraries
-import i18next from 'i18next'
+import i18next from "i18next"
 
 // Enums
 import { TranslationKeys } from "@/src/enums/i18n"
@@ -15,9 +15,10 @@ interface CopyPasswordToClipboardProps {
   darkModeActive: boolean
 }
 
-export async function copyPasswordToClipboard(
-  { password, darkModeActive }: CopyPasswordToClipboardProps
-) {
+export async function copyPasswordToClipboard({
+  password,
+  darkModeActive
+}: CopyPasswordToClipboardProps) {
   try {
     if (password === "") {
       notify({
@@ -38,7 +39,9 @@ export async function copyPasswordToClipboard(
     })
   } catch {
     notify({
-      text: i18next.t(TranslationKeys.ERROR_WHILE_COPYING_PASSWORD_TO_CLIPBOARD),
+      text: i18next.t(
+        TranslationKeys.ERROR_WHILE_COPYING_PASSWORD_TO_CLIPBOARD
+      ),
       type: "error",
       darkModeActive
     })

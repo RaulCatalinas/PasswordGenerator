@@ -1,6 +1,6 @@
 export interface RGBColor {
   R: number
-  G: number,
+  G: number
   B: number
 }
 

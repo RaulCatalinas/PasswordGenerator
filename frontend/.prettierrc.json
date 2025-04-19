@@ -4,5 +4,13 @@
   "tabWidth": 2,
   "useTabs": false,
   "trailingComma": "none",
-  "parser": "babel-ts"
+  "parser": "babel-ts",
+  "overrides": [
+    {
+      "files": ["**/*.json"],
+      "options": {
+        "parser": "json"
+      }
+    }
+  ]
 }
