@@ -9,10 +9,19 @@ import TaskBar from "./components/taskbar/Taskbar"
 import { useDarkModeStore } from "./stores/dark-mode"
 
 // Third-Party libraries
+import { useTranslation } from "react-i18next"
 import { ToastContainer } from "react-toastify"
+
+// i18n
+import "@/src/i18n"
+
+// Enums
+import { TranslationKeys } from "@/src/enums/i18n"
 
 export default function App() {
   const darkModeActive = useDarkModeStore(state => state.darkModeActive)
+
+  const { t } = useTranslation()
 
   return (
     <>
@@ -39,7 +48,7 @@ export default function App() {
                   ${darkModeActive ? "text-gray-300" : "text-gray-700"}
                 `}
               >
-                Password length (in characters):
+                {t(TranslationKeys.SLIDER_PASSWORD_LENGTH_TEXT)}
               </label>
               <Slider />
             </div>

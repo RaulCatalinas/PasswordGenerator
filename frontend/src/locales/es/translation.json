@@ -1,0 +1,14 @@
+{
+    "placeholder_select_contact": "Contáctame",
+    "placeholder_select_change_language": "Cambiar idioma",
+    "placeholder_select_social_media": "Redes sociales",
+    "placeholder_input_generated_password": "Contraseña generada",
+    "spanish_option": "Español",
+    "english_option": "Inglés",
+    "button_generate_password": "Generar contraseña",
+    "button_copy_password": "Copiar contraseña",
+    "slider_password_length_text": "Longitud de la contraseña (en caracteres):",
+    "error_copying_password": "No has generado ninguna contraseña",
+    "password_copied_successfully": "Contraseña copiada al portapapeles",
+    "error_while_copying_password_to_clipboard": "Se ha producido un error al copiar la contraseña al portapapeles, inténtelo de nuevo más tarde."
+}

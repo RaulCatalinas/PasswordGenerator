@@ -5,8 +5,11 @@ import (
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 
+	"github.com/RaulCatalinas/PasswordGenerator/internal/types"
 	userPreferences "github.com/RaulCatalinas/PasswordGenerator/internal/user_preferences"
 )
+
+var userPrefsGenerator = userPreferences.NewUserPreferencesGenerator()
 
 // App struct
 type App struct {
@@ -33,11 +36,25 @@ func (a App) domReady(ctx context.Context) {
 // either by clicking the window close button or calling runtime.Quit.
 // Returning true will cause the application to continue, false will continue shutdown as normal.
 func (a *App) beforeClose(ctx context.Context) (prevent bool) {
+	var userPrefs = userPrefsGenerator.GetPreferences()
+
+	var closeDialogTitle string
+	var closeDialogBody string
+
+	if userPrefs.Language == types.English {
+		closeDialogTitle = "Close Application"
+		closeDialogBody = "Are you sure you wanna close the application?"
+	} else if userPrefs.Language == types.Spanish {
+		closeDialogTitle = "Cerrar aplicación"
+		closeDialogBody = "¿Seguro que quieres cerrar la aplicación?"
+	}
+
 	selection, _ := runtime.MessageDialog(a.ctx, runtime.MessageDialogOptions{
 		Type:    runtime.QuestionDialog,
-		Title:   "Close Application",
-		Message: "Are you sure you wanna close the application?",
+		Title:   closeDialogTitle,
+		Message: closeDialogBody,
 		Icon:    icon,
+		Buttons: []string{"Yes", "No"},
 	})
 
 	return selection == "No"

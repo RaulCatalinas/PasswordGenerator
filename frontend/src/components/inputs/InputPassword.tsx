@@ -1,9 +1,17 @@
+// Stores
 import { useDarkModeStore } from "@/src/stores/dark-mode"
 import { usePasswordStore } from "@/src/stores/password"
+
+// Enums
+import { TranslationKeys } from "@/src/enums/i18n"
+
+// Third-Party libraries
+import { useTranslation } from "react-i18next"
 
 export default function InputPassword() {
   const darkModeActive = useDarkModeStore(state => state.darkModeActive)
   const password = usePasswordStore(state => state.password)
+  const { t } = useTranslation()
 
   return (
     <div className="relative w-full max-w-xl">
@@ -11,7 +19,7 @@ export default function InputPassword() {
         type="text"
         value={password}
         readOnly
-        placeholder="Generated password"
+        placeholder={t(TranslationKeys.PLACEHOLDER_INPUT_GENERATED_PASSWORD)}
         className={`
           w-full px-4 py-3 rounded-md border 0 focus:outline-none 
           focus:ring-2  focus:border-transparent font-mono text-lg shadow-sm

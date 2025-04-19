@@ -8,10 +8,18 @@ import { usePasswordStore } from "@/src/stores/password"
 // Utils
 import { copyPasswordToClipboard } from "@/src/utils/password"
 
+// Enums
+import { TranslationKeys } from "@/src/enums/i18n"
+
+// Third-Party libraries
+import { useTranslation } from "react-i18next"
+
 export default function ButtonGeneratePassword() {
   const passwordLength = usePasswordStore(state => state.passwordLength)
   const setPassword = usePasswordStore(state => state.setPassword)
   const darkModeActive = useDarkModeStore(state => state.darkModeActive)
+
+  const { t } = useTranslation()
 
   const generatePassword = async () => {
     const passwordGenerated = await GeneratePassword(passwordLength)
@@ -35,7 +43,7 @@ export default function ButtonGeneratePassword() {
         ${darkModeActive ? "focus:ring-blue-400" : "focus:ring-blue-500"}
       `}
     >
-      Generate password
+      {t(TranslationKeys.BUTTON_GENERATE_PASSWORD)}
     </button>
   )
 }

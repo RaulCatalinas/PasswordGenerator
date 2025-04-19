@@ -5,9 +5,17 @@ import { usePasswordStore } from "@/src/stores/password"
 // Utils
 import { copyPasswordToClipboard } from "@/src/utils/password"
 
+// Enums
+import { TranslationKeys } from "@/src/enums/i18n"
+
+// Third-Party libraries
+import { useTranslation } from "react-i18next"
+
 export default function ButtonCopyPassWord() {
   const password = usePasswordStore(state => state.password)
   const darkModeActive = useDarkModeStore(state => state.darkModeActive)
+
+  const { t } = useTranslation()
 
   const handleClick = () => {
     copyPasswordToClipboard({ password, darkModeActive })
@@ -26,7 +34,7 @@ export default function ButtonCopyPassWord() {
         ${darkModeActive ? "focus:ring-blue-400" : "focus:ring-blue-500"}
       `}
     >
-      Copy password
+      {t(TranslationKeys.BUTTON_COPY_PASSWORD)}
     </button>
   )
 }

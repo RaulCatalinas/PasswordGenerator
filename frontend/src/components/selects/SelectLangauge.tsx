@@ -2,8 +2,8 @@
 import BaseSelect from "./BaseSelect"
 import SelectOption from "./SelectOption"
 
-// Constants
-import { I18N_LANGUAGES } from "@/src/constants/i18n"
+// Utils
+import { getI18NLanguages } from "@/src/utils/i18n"
 
 // React
 import type { ChangeEvent } from "react"
@@ -11,7 +11,19 @@ import type { ChangeEvent } from "react"
 // Stores
 import { useSelectStore } from "@/src/stores/select"
 
+// Third-Party libraries
+import { useTranslation } from "react-i18next"
+
+// Enums
+import { TranslationKeys } from "@/src/enums/i18n"
+
+//Wailsjs
+import { types } from "@/wailsjs/models"
+import { SetPreference } from "@/wailsjs/user_preferences/userPreferencesGenerator"
+
 export default function SelectLanguage() {
+  const languages = getI18NLanguages()
+
   const showChangeLanguageSelect = useSelectStore(
     state => state.showChangeLanguageSelect
   )
@@ -19,10 +31,14 @@ export default function SelectLanguage() {
     state => state.setShowChangeLanguageSelect
   )
 
-  const handleChange = ({ target }: ChangeEvent<HTMLSelectElement>) => {
+  const { i18n, t } = useTranslation()
+
+  const handleChange = async ({ target }: ChangeEvent<HTMLSelectElement>) => {
     if (target.value === "placeholder") return
 
-    console.log(`Changing language to: ${target.value}`)
+    i18n.changeLanguage(target.value)
+
+    await SetPreference(types.UserPreferencesKeys.LANGUAGE, target.value)
 
     setShowChangeLanguageSelect(!showChangeLanguageSelect)
   }
@@ -30,12 +46,12 @@ export default function SelectLanguage() {
   return (
     <BaseSelect onChange={handleChange} defaultValue="placeholder">
       <SelectOption
-        text="Change language"
+        text={t(TranslationKeys.PLACEHOLDER_SELECT_CHANGE_LANGUAGE)}
         value="placeholder"
         isPlaceholder={true}
       />
 
-      {I18N_LANGUAGES.map(({ id, name, value }) => (
+      {languages.map(({ id, name, value }) => (
         <SelectOption key={id} text={name} value={value} />
       ))}
     </BaseSelect>
