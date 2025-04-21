@@ -2,11 +2,13 @@ package main
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 
-	"github.com/RaulCatalinas/PasswordGenerator/internal/types"
+	"github.com/RaulCatalinas/PasswordGenerator/internal/enums"
 	userPreferences "github.com/RaulCatalinas/PasswordGenerator/internal/user_preferences"
+	"github.com/RaulCatalinas/PasswordGenerator/internal/utils"
 )
 
 var userPrefsGenerator = userPreferences.NewUserPreferencesGenerator()
@@ -38,24 +40,25 @@ func (a App) domReady(ctx context.Context) {
 func (a *App) beforeClose(ctx context.Context) (prevent bool) {
 	var userPrefs = userPrefsGenerator.GetPreferences()
 
-	var closeDialogTitle string
-	var closeDialogBody string
+	i18nJson, err := utils.ReadI18NJson(userPrefs.Language)
 
-	if userPrefs.Language == types.English {
-		closeDialogTitle = "Close Application"
-		closeDialogBody = "Are you sure you wanna close the application?"
-	} else if userPrefs.Language == types.Spanish {
-		closeDialogTitle = "Cerrar aplicación"
-		closeDialogBody = "¿Seguro que quieres cerrar la aplicación?"
+	if err != nil {
+		fmt.Println("Error: ", err)
 	}
 
-	selection, _ := runtime.MessageDialog(a.ctx, runtime.MessageDialogOptions{
+	selection, err := runtime.MessageDialog(a.ctx, runtime.MessageDialogOptions{
 		Type:    runtime.QuestionDialog,
-		Title:   closeDialogTitle,
-		Message: closeDialogBody,
+		Title:   i18nJson[enums.TRANSLATION_KEY_CLOSE_DIALOG_TITLE].(string),
+		Message: i18nJson[enums.TRANSLATION_KEY_CLOSE_DIALOG_BODY].(string),
 		Icon:    icon,
 		Buttons: []string{"Yes", "No"},
 	})
+
+	if err != nil {
+		fmt.Println("Error: ", err)
+
+		return false
+	}
 
 	return selection == "No"
 }
