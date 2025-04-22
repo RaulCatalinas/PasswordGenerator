@@ -17,8 +17,8 @@ export default function ButtonCopyPassWord() {
 
   const { t } = useTranslation()
 
-  const handleClick = () => {
-    copyPasswordToClipboard({ password, darkModeActive })
+  const handleClick = async () => {
+    await copyPasswordToClipboard({ password, darkModeActive })
   }
 
   return (
