@@ -36,7 +36,7 @@ export default function SelectLanguage() {
   const handleChange = async ({ target }: ChangeEvent<HTMLSelectElement>) => {
     if (target.value === "placeholder") return
 
-    i18n.changeLanguage(target.value)
+    await i18n.changeLanguage(target.value)
 
     await SetPreference(types.UserPreferencesKeys.LANGUAGE, target.value)
 

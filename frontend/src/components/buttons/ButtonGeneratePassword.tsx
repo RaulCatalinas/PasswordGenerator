@@ -26,7 +26,10 @@ export default function ButtonGeneratePassword() {
 
     setPassword(passwordGenerated)
 
-    copyPasswordToClipboard({ password: passwordGenerated, darkModeActive })
+    await copyPasswordToClipboard({
+      password: passwordGenerated,
+      darkModeActive
+    })
   }
 
   return (

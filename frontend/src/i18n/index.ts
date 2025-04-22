@@ -11,7 +11,7 @@ import { GetPreferences } from "@/wailsjs/user_preferences/userPreferencesGenera
 
 const { language } = await GetPreferences()
 
-i18n.use(initReactI18next).init({
+await i18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: translationEN
