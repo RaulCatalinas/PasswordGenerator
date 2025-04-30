@@ -2,77 +2,107 @@
 
 ## Description
 
-"Password Generator" is an application to generate passwords with as many random characters as the number entered by the user.
+"Password Generator" is a desktop application that generates secure, random passwords based on user-specified length. The application allows users to create passwords between 8 and 128 characters, meeting modern security standards.
 
-The number entered by the user has to be within the range 8-128 characters
+## Features
 
-## Requirements
+- **Custom Password Length**: Generate passwords between 8-128 characters
+- **Random Character Selection**: Creates truly random and secure passwords
+- **Cross-Platform**: Works seamlessly on Windows, macOS, and Linux
+- **Easy-to-Use Interface**: Simple and intuitive design
+- **Copy to Clipboard**: Easily copy generated passwords with one click
+- **Multiple Language Support**: Interface available in multiple languages
 
-### Python Version
+## Installation
 
-The app has been developed and tested on Python 3.11, although it may work with older versions.
+### Pre-built Binaries
 
-However, I cannot guarantee full app functionality on Python versions prior to 3.11.
+Download the latest version for your operating system from the [Releases](https://github.com/RaulCatalinas/PasswordGenerator/releases) page.
 
-If you're having trouble running your app on an older version of Python, upgrade to version 3.11 or higher to ensure that everything works correctly.
+### Building from Source
 
-To download the latest version of Python, visit the [official website](https://www.python.org/downloads).
+#### Requirements
 
-### Dependencies
+- Go 1.24.2 or higher
+- Wails CLI
+- Bun (for frontend development)
 
-* Python 3.11 or higer
-* flet (Graphical interface)
-* python-dotenv (Environment variable for language switching)
+#### Setup Development Environment
 
-  To install these dependencies execute in a terminal with the virtual environment activated this command: `poetry install`.
+1. Install Go from the [official website](https://go.dev/dl/)
+2. Install Wails CLI:
 
-  This will automatically install all the dependencies specified in your project's `pyproject.toml` file.
+```bash
+go install github.com/wailsapp/wails/v2/cmd/wails@latest
+```
 
-  I explain more about "Poetry" in the next section
+3. Clone the repository:
 
-## Poetry
+```bash
+git clone https://github.com/yourusername/PasswordGenerator.git
 
-### Installation
+#or
+git clone git@github.com:yourusername/PasswordGenerator.git
 
-Poetry is a dependency management tool that simplifies the installation and management of Python packages.
+#or
+gh repo clone yourusername/PasswordGenerator
 
-#### Globally
+cd PasswordGenerator
+```
 
-To install Poetry globally, follow these steps:
+4. Install dependencies:
 
-1. Download and install Poetry by running the following command in a terminal as administrator:
-   * On Unix or WSL: `curl -sSL https://install.python-poetry.org | python3 -`
-   * On Windows in a PowerShell terminal: `(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -`
-2. Add the Poetry installation path to your `PATH` environment variable.
-3. To verify that Poetry is installed correctly, run the following command in a terminal: `poetry --version`.
+```bash
+  cd frontend
+  bun i
+```
 
-#### Locally
+#### Run in Development Mode
 
-Installing Poetry locally can be useful if you want to manage different dependencies for different projects. To install Poetry locally, follow these steps:
+```bash
+wails dev
+```
 
-1. Create a virtual environment for your project.
-2. Activate the virtual environment.
-3. Run the following command in a terminal: `pip install poetry`.
+#### Build for Production
 
-### Dependencies
+```bash
+wails build -platform windows,linux,darwin
+```
 
-To install the dependencies required for your project, run the following command in a terminal with the virtual environment activated: `poetry install`.
+## Technologies Used
 
-This will automatically install all the dependencies specified in your project's `pyproject.toml` file.
+- [Go](https://go.dev/) - For backend logic and password generation algorithms
+- [Wails](https://wails.io/) - Framework for building desktop applications with Go and web technologies
+- [React](https://reactjs.org/) (or your chosen frontend framework) - For the user interface
 
-For more information on Poetry, visit the [official website](https://python-poetry.org).
+## Development
 
-## Contributions
+### Adding a New Language
+
+To add a new language to the application:
+
+1. Create a new language file in the `frontend/src/i18n` directory
+2. Add translations following the existing pattern
+3. Register the new language in the language selector component
+
+## Contributing
 
 Thank you for considering contributing to the project! Here are some ways you can help:
 
-* Clone the repository and work on new features or bug fixes in your own branch.
-* Submit pull requests for your changes and make sure you follow our coding standards and documentation requirements.
-* Help review and approve pull requests from other developers.
-* Share the project on your social networks or blog so that more people can learn about it.
+1. **Report bugs** by creating issues in the GitHub repository
+2. **Suggest new features** that would make the application more useful
+3. **Improve documentation** by fixing errors or adding examples
+4. **Submit code**:
+   - Fork the repository
+   - Commit your changes (`git commit -m 'Add some amazing feature'`)
+   - Push (`git push`)
+   - Open a Pull Request
 
-## Social Networks
+## License
 
-* [Instagram](https://www.instagram.com/raulf1foreveryt_oficial/?hl=en)
-* [Twitter](https://twitter.com/F1foreverRaul)
-* [Facebook](https://www.facebook.com/Raul-F1forever-114186780454598/)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Connect with the Developer
+
+- [Instagram](https://www.instagram.com/raulcatalinasesteban/)
+- [Twitter](https://x.com/CatalinasRaul)
