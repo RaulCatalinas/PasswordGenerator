@@ -75,16 +75,6 @@ wails build -platform windows,linux,darwin
 - [Wails](https://wails.io/) - Framework for building desktop applications with Go and web technologies
 - [React](https://reactjs.org/) (or your chosen frontend framework) - For the user interface
 
-## Development
-
-### Adding a New Language
-
-To add a new language to the application:
-
-1. Create a new language file in the `frontend/src/i18n` directory
-2. Add translations following the existing pattern
-3. Register the new language in the language selector component
-
 ## Contributing
 
 Thank you for considering contributing to the project! Here are some ways you can help:
@@ -100,7 +90,7 @@ Thank you for considering contributing to the project! Here are some ways you ca
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the CC BY-NC-SA 4.0 License - see the [LICENSE](LICENSE) file for details.
 
 ## Connect with the Developer
 
