@@ -22,7 +22,7 @@ import 'package:flutter/material.dart'
         WidgetsFlutterBinding,
         runApp;
 
-import 'handlers/close_window.dart' show handleWidowClose;
+import 'handlers/close_window.dart' show handleCloseWindow;
 import 'managers/window_managers/window_manager.dart' show configureWindow;
 
 void main() async {
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    handleWidowClose(context);
+    handleCloseWindow(context);
   }
 
   void _incrementCounter() {
