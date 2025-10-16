@@ -15,7 +15,9 @@ import '/components/widgets/app_bar.dart' show CreateAppBar;
 import '/components/widgets/dropdown.dart'
     show CreateDropdown, CreateDropdownState;
 import '/components/widgets/icon_button.dart' show CreateIconButton;
+import '/constants/social_media.dart' show socialMedia;
 import '/enums/social_media.dart' show SocialMedia;
+import '/handlers/social_media.dart' show openUrl;
 
 class SettingsUI extends StatelessWidget implements PreferredSizeWidget {
   static final _dropdownContactKey = GlobalKey<CreateDropdownState>();
@@ -93,7 +95,8 @@ class SettingsUI extends StatelessWidget implements PreferredSizeWidget {
             ),
           ],
           onSelected: (value) async {
-            print('Opening $value...');
+            await openUrl(socialMedia[value].toString());
+            _dropdownContactKey.currentState?.toggleVisibility();
           },
         ),
       ],
