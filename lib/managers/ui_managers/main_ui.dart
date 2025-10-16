@@ -17,6 +17,7 @@ import '/components/widgets/input.dart'
     show CreateReadOnlyInput, CreateReadOnlyInputState;
 import '/components/widgets/slider.dart' show CreateSlider, CreateSliderState;
 import '/components/widgets/text_button.dart' show CreateTextButton;
+import 'settings_ui.dart' show SettingsUI;
 
 class MainUI extends StatelessWidget {
   final _inputKey = GlobalKey<CreateReadOnlyInputState>();
@@ -27,6 +28,7 @@ class MainUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const SettingsUI(),
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(25.0),
