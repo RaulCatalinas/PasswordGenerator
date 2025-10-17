@@ -20,6 +20,9 @@ import '/components/widgets/text_button.dart' show CreateTextButton;
 import 'settings_ui.dart' show SettingsUI;
 import '/core/password.dart' show PasswordGenerator;
 import '/utils/clipboard.dart' show copyTextToClipboard;
+import '/utils/notifications.dart' show notify;
+
+import 'package:toastification/toastification.dart' show ToastificationType;
 
 // ignore: must_be_immutable
 class MainUI extends StatelessWidget {
@@ -86,6 +89,15 @@ class MainUI extends StatelessWidget {
                     text: 'Copy password',
                     isOutlinedButton: true,
                     onPressed: () async {
+                      if (password.isEmpty) {
+                        notify(
+                          text: "You haven't generated any passwords",
+                          notificationType: ToastificationType.error,
+                        );
+
+                        return;
+                      }
+
                       await copyTextToClipboard(password);
                     },
                   ),

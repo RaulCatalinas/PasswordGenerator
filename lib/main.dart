@@ -8,7 +8,10 @@ import 'package:flutter/material.dart'
         ThemeData,
         Widget,
         WidgetsFlutterBinding,
-        runApp;
+        runApp,
+        AlignmentGeometry;
+import 'package:toastification/toastification.dart'
+    show ToastificationWrapper, ToastificationConfig;
 
 import 'handlers/close_window.dart' show handleCloseWindow;
 import 'managers/ui_managers/main_ui.dart' show MainUI;
@@ -28,10 +31,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'PasswordGenerator',
-      theme: ThemeData(fontFamily: 'Inter'),
-      home: const MyHomePage(),
+    return ToastificationWrapper(
+      config: ToastificationConfig(alignment: AlignmentGeometry.topRight),
+      child: MaterialApp(
+        title: 'PasswordGenerator',
+        theme: ThemeData(fontFamily: 'Inter'),
+        home: const MyHomePage(),
+      ),
     );
   }
 }
