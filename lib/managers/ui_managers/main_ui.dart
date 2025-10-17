@@ -18,10 +18,13 @@ import '/components/widgets/input.dart'
 import '/components/widgets/slider.dart' show CreateSlider, CreateSliderState;
 import '/components/widgets/text_button.dart' show CreateTextButton;
 import 'settings_ui.dart' show SettingsUI;
+import '/core/password.dart' show PasswordGenerator;
+import '/utils/clipboard.dart' show copyTextToClipboard;
 
 class MainUI extends StatelessWidget {
   final _inputKey = GlobalKey<CreateReadOnlyInputState>();
   final _sliderKey = GlobalKey<CreateSliderState>();
+  String password = '';
 
   MainUI({super.key});
 
@@ -64,21 +67,25 @@ class MainUI extends StatelessWidget {
                 children: [
                   CreateTextButton(
                     text: 'Generate password',
-                    onPressed: () {
+                    onPressed: () async {
                       final passwordLength = _sliderKey.currentState
                           ?.getValue();
 
-                      print(
-                        'Generating password with length of $passwordLength characters ...',
+                      password = PasswordGenerator.generatePassword(
+                        passwordLength ?? 8,
                       );
+
+                      _inputKey.currentState?.setText(password);
+
+                      await copyTextToClipboard(password);
                     },
                   ),
 
                   CreateTextButton(
                     text: 'Copy password',
                     isOutlinedButton: true,
-                    onPressed: () {
-                      print('Copying password...');
+                    onPressed: () async {
+                      await copyTextToClipboard(password);
                     },
                   ),
                 ],
