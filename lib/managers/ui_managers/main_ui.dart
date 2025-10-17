@@ -21,6 +21,7 @@ import 'settings_ui.dart' show SettingsUI;
 import '/core/password.dart' show PasswordGenerator;
 import '/utils/clipboard.dart' show copyTextToClipboard;
 
+// ignore: must_be_immutable
 class MainUI extends StatelessWidget {
   final _inputKey = GlobalKey<CreateReadOnlyInputState>();
   final _sliderKey = GlobalKey<CreateSliderState>();
