@@ -1,8 +1,8 @@
 import 'package:fluikit/widgets.dart'
     show
         FluiAppBar,
-        FluiReadOnlyInput,
-        FluiReadOnlyInputState,
+        FluiInput,
+        FluiInputState,
         FluiSlider,
         FluiSliderState,
         FluiTextButton;
@@ -29,7 +29,7 @@ import 'settings_ui.dart' show SettingsUI;
 
 // ignore: must_be_immutable
 class MainUI extends StatelessWidget {
-  final _inputKey = GlobalKey<FluiReadOnlyInputState>();
+  final _inputKey = GlobalKey<FluiInputState>();
   final _sliderKey = GlobalKey<FluiSliderState>();
   String password = '';
 
@@ -60,9 +60,10 @@ class MainUI extends StatelessWidget {
 
                   const SizedBox(height: 16),
 
-                  FluiReadOnlyInput(
+                  FluiInput(
                     key: _inputKey,
                     placeholder: 'Generated password',
+                    readOnly: true,
                   ),
                 ],
               ),
