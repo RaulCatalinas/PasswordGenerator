@@ -1,33 +1,36 @@
+import 'package:fluikit/widgets.dart'
+    show
+        FluiAppBar,
+        FluiReadOnlyInput,
+        FluiReadOnlyInputState,
+        FluiSlider,
+        FluiSliderState,
+        FluiTextButton;
 import 'package:flutter/material.dart'
     show
         BuildContext,
         Center,
         Column,
-        MainAxisAlignment,
-        Padding,
-        Scaffold,
-        StatelessWidget,
-        Widget,
         EdgeInsets,
         GlobalKey,
+        MainAxisAlignment,
+        Padding,
+        Row,
+        Scaffold,
         SizedBox,
-        Row;
+        StatelessWidget,
+        Widget;
+import 'package:toastification/toastification.dart' show ToastificationType;
 
-import '/components/widgets/input.dart'
-    show CreateReadOnlyInput, CreateReadOnlyInputState;
-import '/components/widgets/slider.dart' show CreateSlider, CreateSliderState;
-import '/components/widgets/text_button.dart' show CreateTextButton;
-import 'settings_ui.dart' show SettingsUI;
 import '/core/password.dart' show PasswordGenerator;
 import '/utils/clipboard.dart' show copyTextToClipboard;
 import '/utils/notifications.dart' show notify;
-
-import 'package:toastification/toastification.dart' show ToastificationType;
+import 'settings_ui.dart' show SettingsUI;
 
 // ignore: must_be_immutable
 class MainUI extends StatelessWidget {
-  final _inputKey = GlobalKey<CreateReadOnlyInputState>();
-  final _sliderKey = GlobalKey<CreateSliderState>();
+  final _inputKey = GlobalKey<FluiReadOnlyInputState>();
+  final _sliderKey = GlobalKey<FluiSliderState>();
   String password = '';
 
   MainUI({super.key});
@@ -35,7 +38,8 @@ class MainUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SettingsUI(),
+      appBar: const FluiAppBar(actions: []),
+      drawer: const SettingsUI(),
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(25.0),
@@ -46,7 +50,7 @@ class MainUI extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CreateSlider(
+                  FluiSlider(
                     key: _sliderKey,
                     label: 'Password length (in characters)',
                     initialValue: 8,
@@ -56,7 +60,7 @@ class MainUI extends StatelessWidget {
 
                   const SizedBox(height: 16),
 
-                  CreateReadOnlyInput(
+                  FluiReadOnlyInput(
                     key: _inputKey,
                     placeholder: 'Generated password',
                   ),
@@ -69,7 +73,7 @@ class MainUI extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 spacing: 16,
                 children: [
-                  CreateTextButton(
+                  FluiTextButton(
                     text: 'Generate password',
                     onPressed: () async {
                       final passwordLength = _sliderKey.currentState
@@ -85,7 +89,7 @@ class MainUI extends StatelessWidget {
                     },
                   ),
 
-                  CreateTextButton(
+                  FluiTextButton(
                     text: 'Copy password',
                     isOutlinedButton: true,
                     onPressed: () async {

@@ -113,6 +113,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  fluikit:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: a0434ad11571c373b3af1ca4543d168117dd0924
+      url: "https://github.com/RaulCatalinas/Fluikit.git"
+    source: git
+    version: "1.0.0"
   flutter:
     dependency: "direct main"
     description: flutter

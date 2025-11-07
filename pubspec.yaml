@@ -35,6 +35,10 @@ dependencies:
   toastification: ^3.0.3
   url_launcher: ^6.3.2
   window_manager: ^0.5.1
+  fluikit:
+    git:
+      url: https://github.com/RaulCatalinas/Fluikit.git
+      ref: main
 
 dev_dependencies:
   flutter_test:
