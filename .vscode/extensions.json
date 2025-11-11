@@ -1,9 +1,7 @@
 {
   "recommendations": [
-    "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode",
-    "yoavbls.pretty-ts-errors",
-    "bradlc.vscode-tailwindcss",
-    "golang.go"
+    "google.arb-editor",
+    "dart-code.dart-code",
+    "dart-code.flutter"
   ]
 }
