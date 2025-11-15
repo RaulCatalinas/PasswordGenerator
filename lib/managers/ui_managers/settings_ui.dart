@@ -11,7 +11,9 @@ import 'package:flutter/material.dart'
         MainAxisAlignment,
         StatelessWidget,
         Widget,
-        SizedBox;
+        SizedBox,
+        ValueListenableBuilder;
+import 'package:flutter_themed/flutter_themed.dart' show Themed;
 
 import '/constants/social_media.dart' show socialMedia;
 import '/enums/social_media.dart' show SocialMedia;
@@ -25,93 +27,100 @@ class SettingsUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FluiDrawer(
-      height: 290,
-      width: 180,
-      children: [
-        const FluiText(text: 'Settings Menu', fontSize: 22),
-        const SizedBox(height: 20),
-        FluiIconButton(
-          onPressed: () {
-            print('Changing theme');
-          },
-          icon: Icons.dark_mode,
-          tooltip: 'Change Theme',
-          iconSize: 28,
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return ValueListenableBuilder(
+      valueListenable: Themed.instance.themeNotifier,
+      builder: (_, _, _) {
+        return FluiDrawer(
+          height: 290,
+          width: 180,
           children: [
+            const FluiText(text: 'Settings Menu', fontSize: 22),
+            const SizedBox(height: 20),
             FluiIconButton(
               onPressed: () {
-                _dropdownChangeLanguageKey.currentState?.toggleVisibility();
+                Themed.toggleTheme();
               },
-              icon: Icons.language,
-              tooltip: 'Change language',
+              icon: Themed.currentThemeName == 'dark'
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+              tooltip: 'Change Theme',
               iconSize: 28,
             ),
-            FluiDropdown(
-              key: _dropdownChangeLanguageKey,
-              initiallyVisible: false,
-              placeHolder: 'Change language',
-              dropdownMenuEntries: [
-                DropdownMenuEntry(
-                  value: 'en',
-                  label: 'English',
-                  style: ButtonStyle(enableFeedback: true),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FluiIconButton(
+                  onPressed: () {
+                    _dropdownChangeLanguageKey.currentState?.toggleVisibility();
+                  },
+                  icon: Icons.language,
+                  tooltip: 'Change language',
+                  iconSize: 28,
                 ),
-                DropdownMenuEntry(
-                  value: 'es',
-                  label: 'Spanish',
-                  style: ButtonStyle(enableFeedback: true),
-                ),
-              ],
-              onSelected: (value) {
-                print('Changing language to $value');
-              },
-            ),
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FluiIconButton(
-              onPressed: () {
-                _dropdownContactKey.currentState?.toggleVisibility();
-              },
-              icon: Icons.contacts,
-              tooltip: 'Contact me',
-              iconSize: 28,
-            ),
-            FluiDropdown(
-              key: _dropdownContactKey,
-              initiallyVisible: false,
-              placeHolder: 'Contact me',
-              dropdownMenuEntries: [
-                DropdownMenuEntry(
-                  value: SocialMedia.instagram,
-                  label: 'Instagram',
-                  style: ButtonStyle(enableFeedback: true),
-                ),
-                DropdownMenuEntry(
-                  value: SocialMedia.twitter,
-                  label: 'Twitter/X',
-                  style: ButtonStyle(enableFeedback: true),
-                ),
-                DropdownMenuEntry(
-                  value: SocialMedia.github,
-                  label: 'GitHub',
-                  style: ButtonStyle(enableFeedback: true),
+                FluiDropdown(
+                  key: _dropdownChangeLanguageKey,
+                  initiallyVisible: false,
+                  placeHolder: 'Change language',
+                  dropdownMenuEntries: [
+                    DropdownMenuEntry(
+                      value: 'en',
+                      label: 'English',
+                      style: ButtonStyle(enableFeedback: true),
+                    ),
+                    DropdownMenuEntry(
+                      value: 'es',
+                      label: 'Spanish',
+                      style: ButtonStyle(enableFeedback: true),
+                    ),
+                  ],
+                  onSelected: (value) {
+                    print('Changing language to $value');
+                  },
                 ),
               ],
-              onSelected: (value) async {
-                await openUrl(socialMedia[value].toString());
-                _dropdownContactKey.currentState?.toggleVisibility();
-              },
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FluiIconButton(
+                  onPressed: () {
+                    _dropdownContactKey.currentState?.toggleVisibility();
+                  },
+                  icon: Icons.contacts,
+                  tooltip: 'Contact me',
+                  iconSize: 28,
+                ),
+                FluiDropdown(
+                  key: _dropdownContactKey,
+                  initiallyVisible: false,
+                  placeHolder: 'Contact me',
+                  dropdownMenuEntries: [
+                    DropdownMenuEntry(
+                      value: SocialMedia.instagram,
+                      label: 'Instagram',
+                      style: ButtonStyle(enableFeedback: true),
+                    ),
+                    DropdownMenuEntry(
+                      value: SocialMedia.twitter,
+                      label: 'Twitter/X',
+                      style: ButtonStyle(enableFeedback: true),
+                    ),
+                    DropdownMenuEntry(
+                      value: SocialMedia.github,
+                      label: 'GitHub',
+                      style: ButtonStyle(enableFeedback: true),
+                    ),
+                  ],
+                  onSelected: (value) async {
+                    await openUrl(socialMedia[value].toString());
+                    _dropdownContactKey.currentState?.toggleVisibility();
+                  },
+                ),
+              ],
             ),
           ],
-        ),
-      ],
+        );
+      },
     );
   }
 }

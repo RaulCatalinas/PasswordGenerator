@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart'
     show
         BuildContext,
-        MaterialApp,
         State,
         StatefulWidget,
         StatelessWidget,
-        ThemeData,
         Widget,
         WidgetsFlutterBinding,
         runApp,
@@ -16,9 +14,13 @@ import 'package:toastification/toastification.dart'
 import 'handlers/close_window.dart' show handleCloseWindow;
 import 'managers/ui_managers/main_ui.dart' show MainUI;
 import 'managers/window_managers/window_manager.dart' show configureWindow;
+import 'package:flutter_themed/flutter_themed.dart' show Themed;
+import 'package:flutter_themed/themed_app.dart' show ThemedApp;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Themed.initialize();
 
   await configureWindow();
 
@@ -33,9 +35,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ToastificationWrapper(
       config: ToastificationConfig(alignment: AlignmentGeometry.topRight),
-      child: MaterialApp(
+      child: ThemedApp(
         title: 'PasswordGenerator',
-        theme: ThemeData(fontFamily: 'Inter'),
+        fontFamily: 'Inter',
         home: const MyHomePage(),
       ),
     );

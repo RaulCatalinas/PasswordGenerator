@@ -13,6 +13,7 @@ import 'package:flutter/material.dart'
         Column,
         EdgeInsets,
         GlobalKey,
+        Icons,
         MainAxisAlignment,
         Padding,
         Row,
@@ -38,7 +39,11 @@ class MainUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const FluiAppBar(actions: []),
+      appBar: const FluiAppBar(
+        actions: [],
+        drawerIcon: Icons.settings,
+        drawerIconTooltip: 'Settings',
+      ),
       drawer: const SettingsUI(),
       body: Center(
         child: Padding(
