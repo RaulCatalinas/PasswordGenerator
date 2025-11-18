@@ -8,19 +8,37 @@ import 'package:flutter/material.dart'
         WidgetsFlutterBinding,
         runApp,
         AlignmentGeometry;
+import 'package:flutter_themed/flutter_themed.dart'
+    show Themed, ThemeStorageAdapter;
+import 'package:flutter_themed/themed_app.dart' show ThemedApp;
 import 'package:toastification/toastification.dart'
     show ToastificationWrapper, ToastificationConfig;
 
+import 'enums/user_preferences.dart' show UserPreferencesKeys;
 import 'handlers/close_window.dart' show handleCloseWindow;
 import 'managers/ui_managers/main_ui.dart' show MainUI;
+import 'managers/user_preferences_managers/user_preferemces_manager.dart'
+    show UserPreferencesManager;
 import 'managers/window_managers/window_manager.dart' show configureWindow;
-import 'package:flutter_themed/flutter_themed.dart' show Themed;
-import 'package:flutter_themed/themed_app.dart' show ThemedApp;
+
+class ThemeStorage implements ThemeStorageAdapter {
+  @override
+  Future<String?> loadTheme() async {
+    return UserPreferencesManager.getPreference(UserPreferencesKeys.theme);
+  }
+
+  @override
+  Future<void> saveTheme(String themeName) async {
+    UserPreferencesManager.setPreference(UserPreferencesKeys.theme, themeName);
+  }
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Themed.initialize();
+  await UserPreferencesManager.initialize();
+
+  await Themed.initialize(storageAdapter: ThemeStorage());
 
   await configureWindow();
 

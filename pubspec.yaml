@@ -17,7 +17,9 @@ dependencies:
     git:
       url: https://github.com/RaulCatalinas/Fluikit.git
       ref: main
-  flutter_themed: ^1.0.0+2
+  flutter_themed: ^1.0.0+3
+  logkeeper: ^1.2.0
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:
