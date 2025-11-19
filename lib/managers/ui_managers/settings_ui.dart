@@ -12,12 +12,16 @@ import 'package:flutter/material.dart'
         StatelessWidget,
         Widget,
         SizedBox,
-        ValueListenableBuilder;
+        ValueListenableBuilder,
+        Locale;
 import 'package:flutter_themed/flutter_themed.dart' show Themed;
 
 import '/constants/social_media.dart' show socialMedia;
 import '/enums/social_media.dart' show SocialMedia;
 import '/handlers/social_media.dart' show openUrl;
+import '/l10n/app_localizations.dart' show AppLocalizations;
+import '/managers/user_preferences_managers/lanaguage_manager.dart'
+    show LanguageManager;
 
 class SettingsUI extends StatelessWidget {
   static final _dropdownContactKey = GlobalKey<FluiDropdownState>();
@@ -32,9 +36,14 @@ class SettingsUI extends StatelessWidget {
       builder: (_, _, _) {
         return FluiDrawer(
           height: 290,
-          width: 180,
+          width: LanguageManager.getCurrentLocale() == const Locale('en')
+              ? 250
+              : 280,
           children: [
-            const FluiText(text: 'Settings Menu', fontSize: 22),
+            FluiText(
+              text: AppLocalizations.of(context)!.settings_menu_title,
+              fontSize: 22,
+            ),
             const SizedBox(height: 20),
             FluiIconButton(
               onPressed: () {
@@ -43,7 +52,7 @@ class SettingsUI extends StatelessWidget {
               icon: Themed.currentThemeName == 'dark'
                   ? Icons.light_mode
                   : Icons.dark_mode,
-              tooltip: 'Change Theme',
+              tooltip: AppLocalizations.of(context)!.change_theme,
               iconSize: 28,
             ),
             Column(
@@ -51,30 +60,32 @@ class SettingsUI extends StatelessWidget {
               children: [
                 FluiIconButton(
                   onPressed: () {
+                    _dropdownContactKey.currentState?.closeIfOpen();
                     _dropdownChangeLanguageKey.currentState?.toggleVisibility();
                   },
                   icon: Icons.language,
-                  tooltip: 'Change language',
+                  tooltip: AppLocalizations.of(context)!.change_language,
                   iconSize: 28,
                 ),
                 FluiDropdown(
                   key: _dropdownChangeLanguageKey,
                   initiallyVisible: false,
-                  placeHolder: 'Change language',
+                  placeHolder: AppLocalizations.of(context)!.change_language,
                   dropdownMenuEntries: [
                     DropdownMenuEntry(
                       value: 'en',
-                      label: 'English',
+                      label: AppLocalizations.of(context)!.english_language,
                       style: ButtonStyle(enableFeedback: true),
                     ),
                     DropdownMenuEntry(
                       value: 'es',
-                      label: 'Spanish',
+                      label: AppLocalizations.of(context)!.spanish_language,
                       style: ButtonStyle(enableFeedback: true),
                     ),
                   ],
                   onSelected: (value) {
-                    print('Changing language to $value');
+                    LanguageManager.changeLanguage(value.toString());
+                    _dropdownChangeLanguageKey.currentState?.closeIfOpen();
                   },
                 ),
               ],
@@ -84,16 +95,17 @@ class SettingsUI extends StatelessWidget {
               children: [
                 FluiIconButton(
                   onPressed: () {
+                    _dropdownChangeLanguageKey.currentState?.closeIfOpen();
                     _dropdownContactKey.currentState?.toggleVisibility();
                   },
                   icon: Icons.contacts,
-                  tooltip: 'Contact me',
+                  tooltip: AppLocalizations.of(context)!.contact,
                   iconSize: 28,
                 ),
                 FluiDropdown(
                   key: _dropdownContactKey,
                   initiallyVisible: false,
-                  placeHolder: 'Contact me',
+                  placeHolder: AppLocalizations.of(context)!.social_media,
                   dropdownMenuEntries: [
                     DropdownMenuEntry(
                       value: SocialMedia.instagram,

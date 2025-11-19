@@ -24,6 +24,7 @@ import 'package:flutter/material.dart'
 import 'package:toastification/toastification.dart' show ToastificationType;
 
 import '/core/password.dart' show PasswordGenerator;
+import '/l10n/app_localizations.dart' show AppLocalizations;
 import '/utils/clipboard.dart' show copyTextToClipboard;
 import '/utils/notifications.dart' show notify;
 import 'settings_ui.dart' show SettingsUI;
@@ -39,10 +40,12 @@ class MainUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const FluiAppBar(
+      appBar: FluiAppBar(
         actions: [],
         drawerIcon: Icons.settings,
-        drawerIconTooltip: 'Settings',
+        drawerIconTooltip: AppLocalizations.of(
+          context,
+        )!.settings_menu_icon_tooltip,
       ),
       drawer: const SettingsUI(),
       body: Center(
@@ -57,7 +60,9 @@ class MainUI extends StatelessWidget {
                 children: [
                   FluiSlider(
                     key: _sliderKey,
-                    label: 'Password length (in characters)',
+                    label: AppLocalizations.of(
+                      context,
+                    )!.slider_password_length_text,
                     initialValue: 8,
                     minValue: 8,
                     maxValue: 128,
@@ -67,7 +72,9 @@ class MainUI extends StatelessWidget {
 
                   FluiInput(
                     key: _inputKey,
-                    placeholder: 'Generated password',
+                    placeholder: AppLocalizations.of(
+                      context,
+                    )!.placeholder_input_generated_password,
                     readOnly: true,
                   ),
                 ],
@@ -80,7 +87,9 @@ class MainUI extends StatelessWidget {
                 spacing: 16,
                 children: [
                   FluiTextButton(
-                    text: 'Generate password',
+                    text: AppLocalizations.of(
+                      context,
+                    )!.button_generate_password,
                     onPressed: () async {
                       final passwordLength = _sliderKey.currentState
                           ?.getValue();
@@ -91,24 +100,32 @@ class MainUI extends StatelessWidget {
 
                       _inputKey.currentState?.setText(password);
 
-                      await copyTextToClipboard(password);
+                      await copyTextToClipboard(
+                        textToCopy: password,
+                        context: context,
+                      );
                     },
                   ),
 
                   FluiTextButton(
-                    text: 'Copy password',
+                    text: AppLocalizations.of(context)!.button_copy_password,
                     isOutlinedButton: true,
                     onPressed: () async {
                       if (password.isEmpty) {
                         notify(
-                          text: "You haven't generated any passwords",
+                          text: AppLocalizations.of(
+                            context,
+                          )!.error_copying_password,
                           notificationType: ToastificationType.error,
                         );
 
                         return;
                       }
 
-                      await copyTextToClipboard(password);
+                      await copyTextToClipboard(
+                        textToCopy: password,
+                        context: context,
+                      );
                     },
                   ),
                 ],

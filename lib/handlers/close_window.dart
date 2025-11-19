@@ -2,14 +2,17 @@ import 'package:fluikit/dialogs.dart' show FluiConfirmDialog;
 import 'package:flutter/material.dart' show BuildContext;
 import 'package:flutter_window_close/flutter_window_close.dart'
     show FlutterWindowClose;
-import 'package:passwordgenerator/managers/user_preferences_managers/user_preferemces_manager.dart';
+
+import '/l10n/app_localizations.dart' show AppLocalizations;
+import '/managers/user_preferences_managers/user_preferences_manager.dart'
+    show UserPreferencesManager;
 
 void handleCloseWindow(BuildContext context) {
   FlutterWindowClose.setWindowShouldCloseHandler(() async {
     return await FluiConfirmDialog.show(
       context,
-      title: 'Exit App',
-      content: 'Are you sure you wanna exit the app?',
+      title: AppLocalizations.of(context)!.close_dialog_title,
+      content: AppLocalizations.of(context)!.close_dialog_body,
       onConfirmed: () async {
         await UserPreferencesManager.savePreferences();
       },

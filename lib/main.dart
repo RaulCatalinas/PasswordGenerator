@@ -3,21 +3,26 @@ import 'package:flutter/material.dart'
         BuildContext,
         State,
         StatefulWidget,
-        StatelessWidget,
         Widget,
         WidgetsFlutterBinding,
         runApp,
-        AlignmentGeometry;
+        AlignmentGeometry,
+        WidgetsBindingObserver,
+        Locale;
 import 'package:flutter_themed/flutter_themed.dart'
     show Themed, ThemeStorageAdapter;
 import 'package:flutter_themed/themed_app.dart' show ThemedApp;
+import 'package:logkeeper/logkeeper.dart' show LogKeeper;
 import 'package:toastification/toastification.dart'
     show ToastificationWrapper, ToastificationConfig;
 
+import '/l10n/app_localizations.dart' show AppLocalizations;
+import '/managers/user_preferences_managers/lanaguage_manager.dart'
+    show LanguageManager;
 import 'enums/user_preferences.dart' show UserPreferencesKeys;
 import 'handlers/close_window.dart' show handleCloseWindow;
 import 'managers/ui_managers/main_ui.dart' show MainUI;
-import 'managers/user_preferences_managers/user_preferemces_manager.dart'
+import 'managers/user_preferences_managers/user_preferences_manager.dart'
     show UserPreferencesManager;
 import 'managers/window_managers/window_manager.dart' show configureWindow;
 
@@ -45,10 +50,32 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  late Locale _locale;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _locale = LanguageManager.getInitialLocale();
+    LanguageManager.setLanguageChangeCallback(_onLanguageChanged);
+
+    LogKeeper.info('✅ UI ready - EasyViewer visible to user');
+  }
+
+  void _onLanguageChanged() {
+    setState(() {
+      _locale = LanguageManager.getCurrentLocale();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ToastificationWrapper(
@@ -57,6 +84,9 @@ class MyApp extends StatelessWidget {
         title: 'PasswordGenerator',
         fontFamily: 'Inter',
         home: const MyHomePage(),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: _locale,
       ),
     );
   }

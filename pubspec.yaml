@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   flutter_window_close: ^1.3.0
   toastification: ^3.0.3
   url_launcher: ^6.3.2
@@ -20,6 +22,7 @@ dependencies:
   flutter_themed: ^1.0.0+3
   logkeeper: ^1.2.0
   shared_preferences: ^2.5.3
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
