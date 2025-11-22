@@ -1,3 +1,17 @@
+import java.util.Properties
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.reader(Charsets.UTF_8))
+}
+
+
+val flutterMinSdkVersion = localProperties.getProperty("flutter.minSdkVersion")?.toInt()
+val flutterTargetSdkVersion = localProperties.getProperty("flutter.targetSdk")?.toInt()
+val flutterVersionCode = localProperties.getProperty("flutter.versionCode")?.toInt()
+val flutterVersionName = localProperties.getProperty("flutter.versionName")   
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -22,12 +36,11 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.passwordgenerator"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = localProperties.getProperty("flutter.minSdkVersion").toInteger()
+        minSdk = flutterMinSdkVersion
+        targetSdk = flutterTargetSdkVersion
         targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        versionCode = flutterVersionCode
+        versionName = flutterVersionName
     }
 
     buildTypes {
