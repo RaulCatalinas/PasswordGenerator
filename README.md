@@ -23,20 +23,13 @@ Download the latest version for your operating system from the [Releases](https:
 
 #### Requirements
 
-- Go 1.24.2 or higher
-- Wails CLI
-- Bun (for frontend development)
+- Flutter 3.38.1
 
 #### Setup Development Environment
 
-1. Install Go from the [official website](https://go.dev/dl/)
-2. Install Wails CLI:
+1. Install flutter from the [official website](https://flutter.dev/)
 
-```bash
-go install github.com/wailsapp/wails/v2/cmd/wails@latest
-```
-
-3. Clone the repository:
+2. Clone the repository:
 
 ```bash
 git clone https://github.com/yourusername/PasswordGenerator.git
@@ -50,30 +43,21 @@ gh repo clone yourusername/PasswordGenerator
 cd PasswordGenerator
 ```
 
-4. Install dependencies:
+3. Install dependencies:
 
 ```bash
-  cd frontend
-  bun i
+  flutter pub get
 ```
 
 #### Run in Development Mode
 
 ```bash
-wails dev
-```
-
-#### Build for Production
-
-```bash
-wails build -platform windows,linux,darwin
+flutter run
 ```
 
 ## Technologies Used
 
-- [Go](https://go.dev/) - For backend logic and password generation algorithms
-- [Wails](https://wails.io/) - Framework for building desktop applications with Go and web technologies
-- [React](https://reactjs.org/) (or your chosen frontend framework) - For the user interface
+- [Flutter](https://flutter.dev/) - Framework for building desktop applications with Go and web technologies
 
 ## Contributing
 
