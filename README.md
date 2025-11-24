@@ -57,7 +57,7 @@ flutter run
 
 ## Technologies Used
 
-- [Flutter](https://flutter.dev/) - Framework for building desktop applications with Go and web technologies
+- [Flutter](https://flutter.dev/) - Framework for building desktop applications with Dart
 
 ## Contributing
 
