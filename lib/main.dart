@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     _locale = LanguageManager.getInitialLocale();
     LanguageManager.setLanguageChangeCallback(_onLanguageChanged);
 
-    LogKeeper.info('✅ UI ready - EasyViewer visible to user');
+    LogKeeper.info('✅ UI ready - PasswordGenerator visible to user');
   }
 
   void _onLanguageChanged() {
